@@ -9,7 +9,7 @@ import { BarLoader } from "react-spinners";
 const HomePage = ({ name, setName }) => {
   const { currentUser } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
-
+  const [user, SetUser] = useState("");
   const [roomId, setRoomId] = useState("");
 
   useEffect(() => {
@@ -18,6 +18,7 @@ const HomePage = ({ name, setName }) => {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         console.log("Document data:", docSnap.data());
+        SetUser(docSnap.data());
       }
     };
     return () => {
@@ -38,7 +39,8 @@ const HomePage = ({ name, setName }) => {
         <BarLoader color="#36d7b7" />
       ) : (
         <div>
-          <h1></h1>
+          <h1>{user.name}</h1>
+          <h1>{user.phone}</h1>
           <QRCode
             size={256}
             value={8777598611}
