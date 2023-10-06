@@ -1,33 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { auth, db } from "../firebase";
-import { doc, getDoc } from "firebase/firestore";
+
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import QRCode from "react-qr-code";
-import { BarLoader } from "react-spinners";
+import UserTable from "../components/UserTable";
+
 const HomePage = ({ name, setName }) => {
   const { currentUser } = useContext(AuthContext);
-  const [loading, setLoading] = useState(true);
-  const [user, SetUser] = useState("");
+
   const [roomId, setRoomId] = useState("");
 
-  useEffect(() => {
-    const getData = async () => {
-      const docRef = doc(db, "users", currentUser.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        console.log("Document data:", docSnap.data());
-        SetUser(docSnap.data());
-      }
-    };
-    return () => {
-      getData();
-      setLoading(false);
-    };
-  }, [currentUser]);
   const navigate = useNavigate();
-
+  console.log(currentUser);
   const handleSubmit = (e) => {
     e.preventDefault();
     navigate(`/room/${roomId}`);
@@ -35,19 +20,32 @@ const HomePage = ({ name, setName }) => {
 
   return (
     <>
-      {loading ? (
-        <BarLoader color="#36d7b7" />
-      ) : (
-        <div>
-          <h1>{user.name}</h1>
-          <h1>{user.phone}</h1>
-          <QRCode
-            size={256}
-            value={8777598611}
-            className="w-[200px] h-[200px]"
-          />
-        </div>
-      )}
+      <div>
+        {currentUser && (
+          <div>
+            <form onSubmit={handleSubmit}>
+              <input
+                type="text"
+                value={currentUser.name}
+                placeholder="Enter your name"
+              />
+              <input
+                type="text"
+                value={roomId}
+                onChange={(e) => setRoomId(e.target.value)}
+                placeholder="Enter your Room"
+              />
+              <button type="submit">Join Now</button>
+            </form>
+            <QRCode
+              size={256}
+              value={currentUser.phone}
+              className="w-[200px] h-[200px]"
+            />
+            <UserTable />
+          </div>
+        )}
+      </div>
     </>
   );
 };

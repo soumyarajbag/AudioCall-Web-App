@@ -14,7 +14,7 @@ const Navbar = () => {
       <div>
         {currentUser && (
           <div>
-            {currentUser.email} + {currentUser.phoneNumber}
+            {currentUser.email} + {currentUser.phone}
           </div>
         )}
         {currentUser != null && <button onClick={signOut}>Sign Out</button>}
