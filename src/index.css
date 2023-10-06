@@ -6,3 +6,15 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
 }
+
+body {
+  background-image: linear-gradient(
+    to right top,
+    #1d3457,
+    #17346d,
+    #243080,
+    #40258e,
+    #610096
+  );
+  height: 200vh;
+}

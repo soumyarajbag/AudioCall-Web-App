@@ -1,20 +1,28 @@
 import { ZegoUIKitPrebuilt } from "@zegocloud/zego-uikit-prebuilt";
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { ZIM } from "zego-zim-web";
 import { useParams } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
+
+let zp = null; // Define zp variable outside the component
 
 const RoomPage = ({ name }) => {
+  const { currentUser } = useContext(AuthContext);
   const { roomId } = useParams();
-  const meeting = async (element) => {
+  const phone = currentUser.phone;
+  const meeting = (element) => {
     const appID = 1770755684;
     const serverSecret = "12cc57bcd9dd900b5b3b7e4068994c10";
+
     const kitToken = ZegoUIKitPrebuilt.generateKitTokenForTest(
       appID,
       serverSecret,
       roomId,
-      Date.now().toString(),
-      name
+      phone,
+      currentUser.name
     );
-    const zp = ZegoUIKitPrebuilt.create(kitToken);
+    zp = ZegoUIKitPrebuilt.create(kitToken);
+    zp.addPlugins({ ZIM });
     zp.joinRoom({
       container: element,
       scenario: {
@@ -36,3 +44,5 @@ const RoomPage = ({ name }) => {
 };
 
 export default RoomPage;
+
+export { zp }; // Export zp variable

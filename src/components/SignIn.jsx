@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { BsFillKeyFill, BsFillTelephoneFill } from "react-icons/bs";
 import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 const SignIn = ({ modal, handleModal }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
-
+  const navigate = useNavigate();
   const handleSign = async (e) => {
     e.preventDefault();
     const res = signInWithEmailAndPassword(auth, email, pass, phone)
       .then((userCredential) => {
         const user = userCredential.user;
         user.phoneNumber = phone;
-
+        navigate("/");
         console.log(user);
       })
       .catch((error) => {
