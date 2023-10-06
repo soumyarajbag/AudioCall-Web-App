@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 const routes = [
   { name: "HOME", link: "/" },
-  { name: "ABOUT", link: "/about" },
   { name: "CONTACTS", link: "/contacts" },
 ];
 

@@ -4,7 +4,7 @@ import { auth } from "../firebase";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-const SignIn = ({ modal, handleModal }) => {
+const SignIn = ({ modal, handleModal, handleClose }) => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [pass, setPass] = useState("");
@@ -30,9 +30,13 @@ const SignIn = ({ modal, handleModal }) => {
         id="container"
         className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm flex justify-center items-center"
       >
-        <div className="bg-black bg-opacity-80 2xl:bg-inherit flex flex-col text-white border-4 border-blue-400 rounded-xl p-2  2xl:w-[400px] min-[360px]:w-[330px] min-[400px]:w-[360px] min-[500px]:w-[400px] min-[800px]:w-[500px] min-[900px]:w-[600px] lg:w-[320px] min-[1080px]:w-[700px] xl:w-[400px] 2xl:h-[600px] min-[360px]:h-[540px]  min-[500px]:h-[500px] min-[600px]:h-[610px] min-[700px]:h-[650px] min-[800px]:h-[680px]  min-[900px]:h-[730px] lg:h-[450px] min-[1080px]:h-[800px] xl:h-[550px]">
+        <div className="bg-black bg-opacity-80 2xl:bg-inherit flex flex-col text-white border-4 border-blue-400 rounded-xl p-2  2xl:w-[400px] min-[360px]:w-[330px] min-[400px]:w-[360px] min-[500px]:w-[400px] min-[800px]:w-[500px] min-[900px]:w-[600px] lg:w-[320px] min-[1080px]:w-[700px] xl:w-[400px] 2xl:h-[600px] min-[360px]:h-[600px]  min-[500px]:h-[500px] min-[600px]:h-[610px] min-[700px]:h-[650px] min-[800px]:h-[680px]  min-[900px]:h-[730px] lg:h-[450px] min-[1080px]:h-[800px] xl:h-[550px]">
           <div className="relative left-[95%] top-[1%]">
-            <h1 id="close" className="font-bold text-xl cursor-pointer">
+            <h1
+              onClick={handleClose}
+              id="close"
+              className="font-bold text-xl cursor-pointer"
+            >
               X
             </h1>
           </div>

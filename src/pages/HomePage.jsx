@@ -25,7 +25,7 @@ const HomePage = ({ name1, setName }) => {
         </h1>
 
         {currentUser && (
-          <div className="border-2 rounded-xl w-[700px] flex items-center justify-center gap-20 py-10">
+          <div className="border-2 rounded-xl w-[300px] 2xl:w-[700px] flex-wrap flex items-center justify-center gap-20 py-10">
             <form
               onSubmit={handleSubmit}
               className="flex flex-col items-center gap-10"
@@ -38,7 +38,7 @@ const HomePage = ({ name1, setName }) => {
                   type="text"
                   value={currentUser.name}
                   placeholder="Enter your name"
-                  className="text-white bg-transparent  border-2 rounded-lg border-blue-400   placeholder:text-white pl-10 pr-2 font-semibold 2xl:h-14 2xl:w-[35vh] 2xl:text-xl min-[360px]:h-10 min-[360px]:w-[35vh] min-[390px]:w-[30vh] min-[400px]:w-[32vh] min-[500px]:w-[43vh] min-[600px]:w-[27vh] min-[600px]:pl-12 min-[700px]:h-16 min-[700px]:w-[30vh] min-[800px]:w-[36vh] min-[800px]:text-2xl min-[900px]:pl-14 min-[900px]:w-[38vh] lg:h-8 lg:text-lg  min-[1080px]:text-2xl min-[1080px]:w-[26vh]  min-[1080px]:h-16 xl:w-[40vh]"
+                  className="text-white bg-transparent  border-2 rounded-lg border-blue-400   placeholder:text-white pl-10 pr-2 font-semibold 2xl:h-14 2xl:w-[35vh] 2xl:text-xl min-[360px]:h-10 min-[360px]:w-[30vh] min-[390px]:w-[30vh] min-[400px]:w-[32vh] min-[500px]:w-[43vh] min-[600px]:w-[27vh] min-[600px]:pl-12 min-[700px]:h-16 min-[700px]:w-[30vh] min-[800px]:w-[36vh] min-[800px]:text-2xl min-[900px]:pl-14 min-[900px]:w-[38vh] lg:h-8 lg:text-lg  min-[1080px]:text-2xl min-[1080px]:w-[26vh]  min-[1080px]:h-16 xl:w-[40vh]"
                 />
               </div>
 

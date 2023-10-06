@@ -13,7 +13,7 @@ import PhoneInput from "react-phone-number-input";
 import { doc, setDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = ({ modal, handleModal }) => {
+const SignUp = ({ modal, handleModal, handleClose }) => {
   const { currentUser } = useContext(AuthContext);
 
   const [phone, setPhone] = useState("");
@@ -60,6 +60,16 @@ const SignUp = ({ modal, handleModal }) => {
               Welcome
             </h1>
           </div>
+          <div className="relative left-[95%] top-[1%]">
+            <h1
+              onClick={handleClose}
+              id="close"
+              className="font-bold text-xl cursor-pointer"
+            >
+              X
+            </h1>
+          </div>
+
           <form onSubmit={handleSubmit} action="" className="text-center">
             <div className="flex flex-col gap-4 relative top-[10vh] lg:top-[3vh] min-[1080px]:top-[14vh] xl:top-[4vh] 2xl:top-[18vh]">
               <div className="flex items-center">

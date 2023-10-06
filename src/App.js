@@ -6,6 +6,7 @@ import { useState } from "react";
 import AuthPage from "./pages/AuthPage";
 import Navbar from "./components/Navbar";
 import UserTable from "./components/UserTable";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   const [name1, setName] = useState("");
@@ -16,11 +17,22 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={<HomePage name={name1} setName={setName} />}
+            element={
+              <ProtectedRoute>
+                <HomePage name={name1} setName={setName} />
+              </ProtectedRoute>
+            }
           />
           <Route path="/auth" element={<AuthPage />} />
           <Route path="/contacts" element={<UserTable />} />
-          <Route path="/room/:roomId" element={<RoomPage name={name1} />} />
+          <Route
+            path="/room/:roomId"
+            element={
+              <ProtectedRoute>
+                <RoomPage name={name1} />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>
